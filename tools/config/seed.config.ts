@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import { join } from 'path';
 import * as slash from 'slash';
 import { argv } from 'yargs';
@@ -11,6 +12,27 @@ import { Environments, InjectableDependency } from './seed.config.interfaces';
 export const ENVIRONMENTS: Environments = {
   DEVELOPMENT: 'dev',
   PRODUCTION: 'prod'
+};
+
+const getAppRewrites = (path: string, base: string): any => {
+  const escapeRegexp = require('escape-string-regexp');
+  const rewriteObject = (path: string) => {
+    path = escapeRegexp(path);
+    return {
+      from: new RegExp(`^${path}$`),
+      to: (context: any) => context.parsedUrl.pathname
+    };
+  };
+
+  if (fs.lstatSync(path).isFile()) {
+    return [rewriteObject(path.replace(base, ''))];
+  } else if (!(/(^|\/)\.[^\/\.]/g).test(path)) {
+    const contents = fs.readdirSync(path);
+    return contents
+      .map((f: string) => getAppRewrites(join(path, f), base))
+      .reduce((acc: string[], dirs: string[]) => acc.concat(dirs), []);
+  }
+  return [];
 };
 
 /**
@@ -456,24 +478,12 @@ export class SeedConfig {
           {
             from: new RegExp(`^${this.NPM_BASE}.*$`),
             to: (context:any) => context.parsedUrl.pathname
-          },
-          {
-            from: new RegExp(`^\/${this.BOOTSTRAP_DIR}\/.*$`),
-            to: (context:any) => context.parsedUrl.pathname
-          },
-          {
-            from: new RegExp(`^${this.APP_BASE}${this.APP_SRC}\/.*$`),
-            to: (context:any) => context.parsedUrl.pathname
-          },
-          {
-            from: new RegExp(`^${this.ASSETS_SRC.replace(this.APP_SRC, '')}\/.*$`),
-            to: (context:any) => context.parsedUrl.pathname
-          },
-          {
-            from: new RegExp(`^${this.CSS_DEST.replace(this.APP_DEST, '')}\/.*$`),
-            to: (context:any) => `/${slash(join(this.APP_DEST, context.parsedUrl.pathname))}`
           }
-        ],
+        ].concat(
+          getAppRewrites(
+            this.APP_DEST,
+            this.APP_DEST
+          )),
         disableDotRule: true
       })],
       port: this.PORT,

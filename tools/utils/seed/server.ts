@@ -74,3 +74,4 @@ export function serveProd() {
     openResource('http://localhost:' + Config.PORT + Config.APP_BASE)
   );
 };
+
