@@ -12,11 +12,18 @@ import {
 import {
   RouterTestingModule
 } from '@angular/router/testing';
+import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { AuthNgrxComponent } from './auth-ngrx/auth-ngrx.component';
+
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './shared/store';
+
+import { RouterStoreModule } from '@ngrx/router-store';
 
 export function main() {
 
@@ -24,14 +31,22 @@ export function main() {
 
     let config: Route[] = [
       { path: '', component: HomeComponent },
-      { path: 'about', component: AboutComponent }
+      { path: 'about', component: AboutComponent },
+      { path: 'auth-ngrx', component: AuthNgrxComponent }
     ];
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [FormsModule, RouterTestingModule.withRoutes(config)],
+        imports: [
+          FormsModule,
+          HttpModule,
+
+          RouterTestingModule.withRoutes(config),
+          StoreModule.provideStore(reducer),
+          RouterStoreModule.connectRouter()
+        ],
         declarations: [TestComponent, ToolbarComponent,
           NavbarComponent, AppComponent,
-          HomeComponent, AboutComponent],
+          HomeComponent, AboutComponent, AuthNgrxComponent],
         providers: [
           { provide: APP_BASE_HREF, useValue: '/' }
         ]
@@ -59,6 +74,3 @@ export function main() {
 
 class TestComponent {
 }
-
-
-

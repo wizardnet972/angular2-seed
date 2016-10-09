@@ -35,8 +35,6 @@ module.exports = function (config) {
       'node_modules/zone.js/dist/proxy.js',
       'node_modules/zone.js/dist/jasmine-patch.js',
 
-      { pattern: 'node_modules/@ngrx/**/*.js', included: false, watched: false },
-
       // RxJs.
       { pattern: 'node_modules/rxjs/**/*.js', included: false, watched: false },
       { pattern: 'node_modules/rxjs/**/*.js.map', included: false, watched: false },
@@ -53,6 +51,14 @@ module.exports = function (config) {
 
       // suppress annoying 404 warnings for resources, images, etc.
       { pattern: 'dist/dev/assets/**/*', watched: false, included: false, served: true },
+   
+      // ngrx
+      { pattern: 'node_modules/@ngrx/**/*.js', included: false, watched: false },
+
+      // ngrx additionals
+      { pattern: 'node_modules/ngrx-store-logger/**/*.js', included: false, watched: false },
+      { pattern: 'node_modules/ngrx-store-freeze/**/*.js', included: false, watched: false },
+      { pattern: 'node_modules/deep-freeze/**/*.js', included: false, watched: false },
 
       'test-config.js',
       'dist/dev/app/system-config.js',

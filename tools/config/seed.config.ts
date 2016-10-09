@@ -346,6 +346,7 @@ export class SeedConfig {
       `/node_modules/@angular/*/package.json`,
 
       //@ngrx:
+      `!/node_modules/@ngrx/package.json`,
       `/node_modules/@ngrx/*/package.json`
     ],
     paths: {
@@ -370,7 +371,10 @@ export class SeedConfig {
       '@angular/router/testing': 'node_modules/@angular/router/bundles/router-testing.umd.js',
 
       //@ngrx:
-      '@ngrx/*': 'node_modules/@ngrx/*',
+      '@ngrx/core': 'node_modules/@ngrx/core/bundles/core.umd.js',
+      '@ngrx/store': 'node_modules/@ngrx/store/bundles/store.umd.js',
+      '@ngrx/effects': 'node_modules/@ngrx/effects/bundles/effects.umd.js',
+      '@ngrx/router-store': 'node_modules/@ngrx/router-store/bundles/router-store.umd.js',
 
       'rxjs/*': 'node_modules/rxjs/*',
       'app/*': '/app/*',
@@ -379,7 +383,10 @@ export class SeedConfig {
       '*': 'node_modules/*'
     },
     packages: {
-      rxjs: { defaultExtension: 'js' }
+        rxjs: { defaultExtension: 'js' },
+        'ngrx-store-logger':  { main: 'dist/index', defaultExtension: 'js' },
+        'ngrx-store-freeze':  { main: 'dist/index', defaultExtension: 'js' },
+        'deep-freeze':  { main: 'index', defaultExtension: 'js' }
     }
   };
 
