@@ -1,7 +1,7 @@
 describe('App', () => {
 
-  beforeEach( () => {
-    browser.get('/');
+  beforeEach(async () => {
+    return await browser.get('/');
   });
 
   it('should have a title', () => {
@@ -17,7 +17,7 @@ describe('App', () => {
   });
 
   it('should have correct nav text for About', () => {
-    expect(element(by.css('sd-app sd-navbar nav a:last-child')).getText()).toEqual('ABOUT');
+    expect(element(by.css('sd-app sd-navbar nav a:nth-child(2)')).getText()).toEqual('ABOUT');
   });
 
 });

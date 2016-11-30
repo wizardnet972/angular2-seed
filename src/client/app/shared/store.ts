@@ -20,7 +20,7 @@ const developmentReducer = compose(storeFreeze, storeLogger(), combineReducers)(
 const productionReducer = combineReducers(reducers);
 
 export function rootReducer(state: any, action: any) {
-  if (String('<%= ENV %>') === 'prod') {
+  if (String('<%= BUILD_TYPE %>') === 'prod') {
     return productionReducer(state, action);
   } else {
     return developmentReducer(state, action);
