@@ -6,10 +6,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthService } from './auth.service';
 import { AboutRoutingModule } from './auth-ngrx-routing.module';
 
-let effects = [
-    AuthNgrxEffects,
-];
-
 @NgModule({
     imports: [
         CommonModule,
@@ -20,7 +16,7 @@ let effects = [
          *
          * See: https://github.com/ngrx/effects/blob/master/docs/api.md#run
          */
-        effects.map(effect => EffectsModule.run(effect)),
+        EffectsModule.run(AuthNgrxEffects),
     ],
     providers: [AuthService],
     declarations: [AuthNgrxComponent],
