@@ -381,6 +381,7 @@ export class SeedConfig {
     packages: {
       'ngrx-store-logger': { main: 'dist/index', defaultExtension: 'js' },
       'ngrx-store-freeze': { main: 'dist/index', defaultExtension: 'js' },
+      'deep-freeze-strict': { main: 'index', defaultExtension: 'js' },
       'deep-freeze': { main: 'index', defaultExtension: 'js' }
     }
   };

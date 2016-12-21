@@ -32,12 +32,28 @@ export class ProjectConfig extends SeedConfig {
       // {src: `${this.CSS_SRC}/path-to-lib/test-lib.css`, inject: true, vendor: false},
     ];
 
-    // Add packages (e.g. ng2-translate)
+    // Add packages (e.g. lodash)
     // let additionalPackages: ExtendPackages[] = [{
-    //   name: 'ng2-translate',
-    //   // Path to the package's bundle
-    //   path: 'node_modules/ng2-translate/bundles/ng2-translate.umd.js'
+    //   name: 'lodash',
+    //   path: `${this.APP_BASE}node_modules/lodash/lodash.js`,
+    //   packageMeta: {
+    //     main: 'index.js',
+    //     defaultExtension: 'js'
+    //   }
     // }];
+    //
+    // or
+    //
+    // let additionalPackages: ExtendPackages[] = [];
+    //
+    // additionalPackages.push({
+    //   name: 'lodash',
+    //   path: `${this.APP_BASE}node_modules/lodash/lodash.js`,
+    //   packageMeta: {
+    //     main: 'index.js',
+    //     defaultExtension: 'js'
+    //   }
+    // });
     //
     // this.addPackagesBundles(additionalPackages);
 
