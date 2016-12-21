@@ -410,11 +410,11 @@ export class SeedConfig {
       // `src/client`.
       [join(this.TMP_DIR, this.BOOTSTRAP_DIR, '*')]: `${this.TMP_DIR}/${this.BOOTSTRAP_DIR}/*`,
       // ngrx
-      '@ngrx/core': 'node_modules/@ngrx/core/bundles/core.js',
-      '@ngrx/store': 'node_modules/@ngrx/store/bundles/store.js',
-      '@ngrx/effects': 'node_modules/@ngrx/effects/bundles/effects.js',
-      '@ngrx/router-store': 'node_modules/@ngrx/router-store/bundles/router-store.js',
-      '@ngrx/store-devtools': 'node_modules/@ngrx/store-devtools/bundles/store-devtools.js',
+      '@ngrx/core': 'node_modules/@ngrx/core/bundles/core.umd.js',
+      '@ngrx/store': 'node_modules/@ngrx/store/bundles/store.umd.js',
+      '@ngrx/effects': 'node_modules/@ngrx/effects/bundles/effects.umd.js',
+      '@ngrx/router-store': 'node_modules/@ngrx/router-store/bundles/router-store.umd.js',
+      '@ngrx/store-devtools': 'node_modules/@ngrx/store-devtools/bundles/store-devtools.umd.js',
 
       'dist/tmp/node_modules/*': 'dist/tmp/node_modules/*',
       'node_modules/*': 'node_modules/*',
