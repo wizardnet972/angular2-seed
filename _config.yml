@@ -1,0 +1,8 @@
+title: Angular 2 Seed
+description: High-quality, modular starter (seed) project for Angular 2 apps with statically typed build and AoT
+google_analytics: UA-18060688-18
+show_downloads: true
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions
